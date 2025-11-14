@@ -234,7 +234,66 @@
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
             <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-[--color-text-base]">การลงข้อมูลค่า DF</h2>
+            <div class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-4 mb-5 space-y-2 text-sm dark:text-[--color-text-base]">
+                <div><strong>HN :</strong> <span class="text-blue-600 dark:text-[--color-primary-500] font-medium">52039575</span></div>
+                <div><strong>Pet Name :</strong> <span class="text-blue-600 dark:text-[--color-primary-500] font-medium">คุณส้มจี๊ด(จี๊ดจ๊าด)</span></div>
+                <div><strong>Owner Name :</strong> <span class="text-blue-600 dark:text-[--color-primary-500] font-medium">คุณพ่อส้มจี๊ด</span></div>
+                <div><strong>Date Record :</strong> <span class="font-medium">31 Dec 2025 , 23:59</span></div>
+                <div class="flex items-center space-x-2 pt-1">
+                    <strong class="flex-shrink-0 w-20">DVM</strong>
+                    <select class="flex-1 w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] text-gray-500 dark:text-[--color-text-muted]">
+                        <option selected disabled>Default User (DVM) login</option>
+                        <option value="user1" class="text-black dark:text-[--color-text-base]">นพพร ยงยุทธ (User A)</option>
+                        <option value="user2" class="text-black dark:text-[--color-text-base]">คุณหมอ B (User B)</option>
+                    </select>
+                </div>
+                 <div class="flex items-center space-x-2 pt-1">
+                    <strong class="flex-shrink-0 w-20">Department</strong>
+                    <select class="flex-1 w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] text-gray-500 dark:text-[--color-text-muted]">
+                        <option selected disabled>Default Department login</option>
+                        <option value="dep101" class="text-black dark:text-[--color-text-base]">101 อายุรกรรมทั่วไปนอกเวลา</option>
+                        <option value="dep102" class="text-black dark:text-[--color-text-base]">102 คลินิกพิเศษนอกเวลา</option>
+                        <option value="dep103" class="text-black dark:text-[--color-text-base]">103 รังสีวินิจฉัยนอกเวลา</option>
+                    </select>
+                </div>
+                 <div class="flex items-center space-x-2 pt-1">
+                    <strong class="flex-shrink-0 w-20">Date Visit</strong>
+                    <select class="flex-1 w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] text-gray-500 dark:text-[--color-text-muted]">
+                        <option selected disabled>31 Dec 2025 (Last)</option>
+                        <option value="2025-12-30" class="text-black dark:text-[--color-text-base]">30 Dec 2025</option>
+                        <option value="2025-12-29" class="text-black dark:text-[--color-text-base]">29 Dec 2025</option>
+                        <option value="2025-09-05" class="text-black dark:text-[--color-text-base]">5 Sep 2025</option>
+                        <option value="2024-08-27" class="text-black dark:text-[--color-text-base]">27 Aug 2024</option>
+                    </select>
+                </div>
+                <p class="text-xs text-gray-600 dark:text-[--color-text-muted] pt-2">
+                    ก่อนลงข้อมูลโปรดตรวจสอบข้อมูลเดิมตามวันด้านบนทุกครั้ง<br>เพื่อป้องกันการลงข้อมูลซ้ำ
+                </p>
+                <p class="text-xs text-red-600 font-medium">
+                    กรณีลงข้อมูลซ้ำโปรดแจ้งการเงินเพื่อแก้ไขทันที
+                </p>
+                 <p class="text-xs text-red-600 font-medium pt-1">
+                    สามารถเข้าดูข้อมูลการบันทึกค่าใช้จ่ายในระบบของ HN นี้ได้ที่ส่วน Quick view ใน EMR module ส่วน Financial
+                </p>
             </div>
+            <div class="space-y-3">
+                <label for="df-type" class="block font-semibold text-gray-700 dark:text-[--color-text-base]">เลือกชนิด DF</label>
+                <select id="df-type" class="w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] text-gray-500 dark:text-[--color-text-muted]">
+                    <option selected disabled>DF : Select DF Type</option>
+                    <option value="type1" class="text-black dark:text-[--color-text-base]">Type 1</option>
+                    <option value="type2" class="text-black dark:text-[--color-text-base]">Type 2</option>
+                    <option value="type3" class="text-black dark:text-[--color-text-base]">Type 3</option>
+                </select>
+            </div>
+            <div class="flex justify-end space-x-3 mt-6">
+                <button id="df-popup-cancel" class="bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-[--color-bg-secondary] dark:hover:bg-[--color-border-base] dark:text-[--color-text-base] px-4 py-2 rounded-lg text-sm font-medium">
+                    ยกเลิก
+                </button>
+                <button class="bg-orange-500 hover:bg-orange-600 dark:bg-[--color-orange-500] dark:hover:bg-[--color-orange-600] text-white px-4 py-2 rounded-lg text-sm font-medium">
+                    บันทึกการลงข้อมูล DF
+                </button>
+            </div>
+        </div>
     </div>
 
     <div id="tf-popup-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[100] hidden">
@@ -243,19 +302,123 @@
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
             <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-[--color-text-base]">การลงข้อมูลค่า TF (Tech Fee)</h2>
+            <div class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-4 mb-5 space-y-2 text-sm dark:text-[--color-text-base]">
+                <div><strong>HN :</strong> <span class="text-blue-600 dark:text-[--color-primary-500] font-medium">52039575</span></div>
+                <div><strong>Pet Name :</strong> <span class="text-blue-600 dark:text-[--color-primary-500] font-medium">คุณส้มจี๊ด(จี๊ดจ๊าด)</span></div>
+                <div><strong>Owner Name :</strong> <span class="text-blue-600 dark:text-[--color-primary-500] font-medium">คุณพ่อส้มจี๊ด</span></div>
+                <div><strong>Date Record :</strong> <span class="font-medium">31 Dec 2025 , 23:59</span></div>
+                <div class="flex items-center space-x-2 pt-1">
+                    <strong class="flex-shrink-0 w-20">Tech</strong>
+                    <select class="flex-1 w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] text-gray-500 dark:text-[--color-text-muted]">
+                        <option selected disabled>Default User (Tech) login</option>
+                        <option value="user1" class="text-black dark:text-[--color-text-base]">นพพร ยงยุทธ (User A)</option>
+                        <option value="user2" class="text-black dark:text-[--color-text-base]">คุณ B (User B)</option>
+                    </select>
+                </div>
+                 <div class="flex items-center space-x-2 pt-1">
+                    <strong class="flex-shrink-0 w-20">Department</strong>
+                    <select class="flex-1 w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] text-gray-500 dark:text-[--color-text-muted]">
+                        <option selected disabled>Default Department login</option>
+                        <option value="dep101" class="text-black dark:text-[--color-text-base]">101 อายุรกรรมทั่วไปนอกเวลา</option>
+                        <option value="dep102" class="text-black dark:text-[--color-text-base]">102 คลินิกพิเศษนอกเวลา</option>
+                        <option value="dep103" class="text-black dark:text-[--color-text-base]">103 รังสีวินิจฉัยนอกเวลา</option>
+                    </select>
+                </div>
+                 <div class="flex items-center space-x-2 pt-1">
+                    <strong class="flex-shrink-0 w-20">Date Visit</strong>
+                    <select class="flex-1 w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] text-gray-500 dark:text-[--color-text-muted]">
+                        <option selected disabled>31 Dec 2025 (Last)</option>
+                        <option value="2025-12-30" class="text-black dark:text-[--color-text-base]">30 Dec 2025</option>
+                        <option value="2025-12-29" class="text-black dark:text-[--color-text-base]">29 Dec 2025</option>
+                        <option value="2025-09-05" class="text-black dark:text-[--color-text-base]">5 Sep 2025</option>
+                        <option value="2024-08-27" class="text-black dark:text-[--color-text-base]">27 Aug 2024</option>
+                    </select>
+                </div>
+                <p class="text-xs text-gray-600 dark:text-[--color-text-muted] pt-2">
+                    ก่อนลงข้อมูลโปรดตรวจสอบข้อมูลเดิมตามวันด้านบนทุกครั้ง<br>เพื่อป้องกันการลงข้อมูลซ้ำ
+                </p>
+                <p class="text-xs text-red-600 font-medium">
+                    กรณีลงข้อมูลซ้ำโปรดแจ้งการเงินเพื่อแก้ไขทันที
+                </p>
+                 <p class="text-xs text-red-600 font-medium pt-1">
+                    สามารถเข้าดูข้อมูลการบันทึกค่าใช้จ่ายในระบบของ HN นี้ได้ที่ส่วน Quick view ใน EMR module ส่วน Financial
+                </p>
             </div>
+            <div class="space-y-3">
+                <label for="tf-type" class="block font-semibold text-gray-700 dark:text-[--color-text-base]">เลือกชนิด TF</label>
+                <select id="tf-type" class="w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] text-gray-500 dark:text-[--color-text-muted]">
+                    <option selected disabled>TF : Select TF Type</option>
+                    <option value="type1" class="text-black dark:text-[--color-text-base]">Type 1</option>
+                    <option value="type2" class="text-black dark:text-[--color-text-base]">Type 2</option>
+                    <option value="type3" class="text-black dark:text-[--color-text-base]">Type 3</option>
+                </select>
+            </div>
+            <div class="flex justify-end space-x-3 mt-6">
+                <button id="tf-popup-cancel" class="bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-[--color-bg-secondary] dark:hover:bg-[--color-border-base] dark:text-[--color-text-base] px-4 py-2 rounded-lg text-sm font-medium">
+                    ยกเลิก
+                </button>
+                <button class="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
+                    บันทึกการลงข้อมูล TF
+                </button>
+            </div>
+        </div>
     </div>
 
     <div id="problem-list-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[100] hidden">
         <div class="bg-white dark:bg-[--color-bg-content] rounded-lg shadow-xl max-w-5xl w-full p-0 relative" style="max-height: 90vh; display: flex; flex-direction: column;">
+            
             <button id="problem-list-popup-close-x" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-[--color-text-muted]">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
+            
             <div class="p-4 border-b border-gray-200 dark:border-[--color-border-base] flex-shrink-0">
                 <h2 class="text-xl font-semibold text-gray-800 dark:text-[--color-text-base]">Problem List Editor</h2>
             </div>
+            
             <div class="p-4 overflow-y-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="md:col-span-1 border border-gray-300 dark:border-[--color-border-base] rounded-lg overflow-hidden">
+                       <div class="flex border-b border-gray-200 dark:border-[--color-border-base]">
+                           <button class="flex-1 text-center py-2 px-4 text-sm font-semibold text-blue-600 dark:text-[--color-primary-500] border-b-2 border-blue-600 dark:border-[--color-primary-500]">
+                               Category
+                           </button>
+                           <button class="flex-1 text-center py-2 px-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]">
+                               Search
+                           </button>
+                       </div>
+                       <ul id="category-list" class="divide-y divide-gray-200 dark:divide-[--color-border-base] overflow-y-auto dark:text-[--color-text-base] h-80" style="height: 20rem;">
+                           <li data-category-id="common" class="p-3 cursor-pointer bg-gray-100 dark:bg-[rgba(139,125,107,0.15)] font-semibold">1. Common Problem</li>
+                           <li data-category-id="eye" class="p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary]/50">2. Eye</li>
+                           <li data-category-id="ear" class="p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary]/50">3. Ear</li>
+                           <li data-category-id="nose" class="p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary]/50">4. Nose</li>
+                           <li data-category-id="throat" class="p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary]/50">5. Throat</li>
+                           <li data-category-id="abdomen" class="p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary]/50">6. Abdomen</li>
+                           <li data-category-id="trauma" class="p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary]/50">7. Trauma</li>
+                           <li data-category-id="bone" class="p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary]/50">8. Bone</li>
+                           <li data-category-id="behavier" class="p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary]/50">9. Behavier</li>
+                       </ul>
+                   </div>
+                   <div class="md:col-span-2 border border-gray-300 dark:border-[--color-border-base] rounded-lg overflow-hidden flex flex-col">
+                       <div class="p-2 border-b border-gray-200 dark:border-[--color-border-base] flex-shrink-0">
+                           <h3 id="result-header" class="font-semibold dark:text-[--color-text-base]">Result (0 selected)</h3>
+                       </div>
+                       <div class="overflow-y-auto" style="height: 20rem;">
+                           <table class="w-full text-left text-sm table-fixed">
+                               <thead class="border-b border-gray-200 dark:border-[--color-border-base] sticky top-0">
+                                   <tr>
+                                       <th class="p-3 w-[10%] dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]"><input type="checkbox"></th>
+                                       <th class="p-3 font-semibold w-[60%] dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Term</th>
+                                       <th class="p-3 font-semibold w-[30%] dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">TAG</th>
+                                   </tr>
+                               </thead>
+                               <tbody id="result-table-body" class="divide-y divide-gray-200 dark:divide-[--color-border-base] dark:text-[--color-text-base]">
+                                   </tbody>
+                           </table>
+                       </div>
+                   </div>
                 </div>
+            </div>
+            
             <div class="flex justify-between items-center p-4 border-t border-gray-200 dark:border-[--color-border-base] mt-2 flex-shrink-0">
                 <button id="problem-list-popup-cancel" class="bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-[--color-bg-secondary] dark:hover:bg-[--color-border-base] dark:text-[--color-text-base] px-4 py-2 rounded-lg text-sm font-medium">
                     Close
@@ -264,6 +427,7 @@
                     Confirm Problem List Selection
                 </button>
             </div>
+            
         </div>
     </div>
     
