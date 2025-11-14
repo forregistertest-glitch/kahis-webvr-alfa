@@ -545,17 +545,17 @@
                                                 </span>
                                             </div>
                                         </th>
+                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="temp">Temp (°F)</th>
+                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="rr">RR (rpm)</th>
+                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="hr">HR (bpm)</th>
                                         <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="bp">BP (mmHg)</th>
                                         <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="pulse">Pulse (bpm)</th>
-                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="hr">HR (bpm)</th>
-                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="rr">RR (rpm)</th>
-                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="temp">Temp (°F)</th>
-                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="fbs">FBS (mg/dL)</th>
                                         <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="crt">CRT (sec)</th>
-                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="mucous">Mucous</th>
-                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="pulse_quality">Pulse</th>
+                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="fbs">FBS (mg/dL)</th>
+                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="mm">MM</th>
                                         <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="lung">Lung</th>
                                         <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="heart">Heart</th>
+                                        <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="pulse_quality">Pulse (Quality)</th>
                                         <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="loc">L.O.C</th>
                                         <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="pain">Pain</th>
                                         <th scope="col" class="history-sort-header text-left text-[var(--color-text-base)]" data-sort="cyanosis">Cyanosis</th>
@@ -847,32 +847,74 @@
                                 <div class="font-semibold text-center dark:text-[--color-text-base]">OS (Left Eye)</div>
                                 
                                 <label class="form-label justify-self-end">Pupillary light reflex (PLR)</label>
-                                <input type="text" class="form-input" placeholder="+ / - / Sluggish">
-                                <input type="text" class="form-input" placeholder="+ / - / Sluggish">
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                    <option value="Sluggish">Sluggish</option>
+                                </select>
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                    <option value="Sluggish">Sluggish</option>
+                                </select>
 
                                 <label class="form-label justify-self-end">Palpebral Reflex</label>
-                                <input type="text" class="form-input" placeholder="+ / -">
-                                <input type="text" class="form-input" placeholder="+ / -">
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                </select>
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                </select>
 
                                 <label class="form-label justify-self-end">Dazzle Reflex</label>
-                                <input type="text" class="form-input" placeholder="+ / -">
-                                <input type="text" class="form-input" placeholder="+ / -">
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                </select>
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                </select>
 
                                 <label class="form-label justify-self-end">Menace Response</label>
-                                <input type="text" class="form-input" placeholder="+ / -">
-                                <input type="text" class="form-input" placeholder="+ / -">
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                </select>
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="+">+</option>
+                                    <option value="-">-</option>
+                                </select>
 
                                 <label class="form-label justify-self-end">Schirmer Tear Test (mm/min)</label>
-                                <input type="text" class="form-input" placeholder="e.g. 15">
-                                <input type="text" class="form-input" placeholder="e.g. 15">
+                                <input type="text" id="eye_stt_od" data-numpad="true" class="form-input" placeholder="e.g. 15" readonly>
+                                <input type="text" id="eye_stt_os" data-numpad="true" class="form-input" placeholder="e.g. 15" readonly>
 
                                 <label class="form-label justify-self-end">Fluorescein Stain</label>
-                                <input type="text" class="form-input" placeholder="Positive / Negative">
-                                <input type="text" class="form-input" placeholder="Positive / Negative">
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="Positive">Positive</option>
+                                    <option value="Negative">Negative</option>
+                                </select>
+                                <select class="form-input form-select">
+                                    <option value="" selected disabled class="form-select-placeholder">Select...</option>
+                                    <option value="Positive">Positive</option>
+                                    <option value="Negative">Negative</option>
+                                </select>
 
                                 <label class="form-label justify-self-end">Intraocular Pressure (mmHg)</label>
-                                <input type="text" class="form-input" placeholder="e.g. 18">
-                                <input type="text" class="form-input" placeholder="e.g. 18">
+                                <input type="text" id="eye_iop_od" data-numpad="true" class="form-input" placeholder="e.g. 18" readonly>
+                                <input type="text" id="eye_iop_os" data-numpad="true" class="form-input" placeholder="e.g. 18" readonly>
                             </div>
                         </section>
                         
@@ -948,6 +990,37 @@
         </button>
         <div class="max-w-4xl max-h-[90vh] w-full h-full">
             <img id="full-image-viewer-src" src="" alt="Enlarged exam image" class="w-full h-full object-contain">
+        </div>
+    </div>
+    
+    <div id="numpad-modal" class_name="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[120] hidden">
+        <div class="bg-white dark:bg-[--color-bg-content] rounded-lg shadow-xl w-full max-w-xs p-4">
+            <h3 class="text-lg font-semibold mb-4 text-center dark:text-[--color-text-base]">Enter Value</h3>
+            <input type="hidden" id="numpad-target-id">
+            
+            <div class="grid grid-cols-3 gap-2">
+                <button data-value="7" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">7</button>
+                <button data-value="8" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">8</button>
+                <button data-value="9" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">9</button>
+                
+                <button data-value="4" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">4</button>
+                <button data-value="5" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">5</button>
+                <button data-value="6" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">6</button>
+                
+                <button data-value="1" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">1</button>
+                <button data-value="2" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">2</button>
+                <button data-value="3" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">3</button>
+                
+                <button data-value="." class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">.</button>
+                <button data-value="0" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300">0</button>
+                <button data-value="backspace" class="numpad-btn text-xl font-bold p-4 rounded bg-gray-200 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] hover:bg-gray-300 flex justify-center items-center">
+                    <i data-lucide="delete" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mt-2">
+                <button data-value="clear" class="numpad-btn p-3 rounded bg-orange-500 text-white font-semibold">Clear</button>
+                <button data-value="close" class="numpad-btn p-3 rounded bg-blue-600 text-white font-semibold">Close</button>
+            </div>
         </div>
     </div>
     

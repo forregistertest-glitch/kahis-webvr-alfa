@@ -34,6 +34,13 @@ function initializeDrawingDemo(templateUrl) {
 
     // โหลดภาพพื้นหลัง (จาก 'eyeexam.png')
     fabric.Image.fromURL(templateUrl, function(img) {
+        if (!img) {
+             console.error("Could not load image: " + templateUrl);
+             // (Optional) อาจจะตั้งค่าพื้นหลังสีขาวถ้าโหลดไม่สำเร็จ
+             fabricCanvas.setBackgroundColor('#FFFFFF', fabricCanvas.renderAll.bind(fabricCanvas));
+             saveDrawingState(); // บันทึกสถานะเริ่มต้น (ว่างเปล่า)
+             return;
+        }
         // ตั้งขนาด Canvas ตามอัตราส่วนของภาพ
         fabricCanvas.setHeight(container.clientWidth * (img.height / img.width));
         
@@ -586,6 +593,56 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target === imageViewerModal) hideImageViewer(); // ปิดเมื่อคลิกพื้นหลัง
     });
 
+    // --- (NEW) Numpad Modal Logic ---
+    const numpadModal = document.getElementById('numpad-modal');
+    const numpadTargetInput = document.getElementById('numpad-target-id');
+    const numpadInputs = document.querySelectorAll('input[data-numpad="true"]');
+
+    numpadInputs.forEach(input => {
+        input.addEventListener('click', (e) => {
+            numpadTargetInput.value = e.target.id; // เก็บ id ของ input ที่ถูกคลิก
+            numpadModal.classList.remove('hidden');
+        });
+    });
+
+    if (numpadModal) {
+        numpadModal.addEventListener('click', (e) => {
+            const target = e.target.closest('.numpad-btn'); // หปุ่มที่ถูกคลิก
+            if (!target) {
+                 // ถ้าคลิกนอกปุ่ม (แต่ยังอยู่ใน modal) ไม่ต้องทำอะไร
+                 if (e.target === numpadModal) {
+                     // คลิกพื้นหลัง modal (ซ่อน)
+                     numpadModal.classList.add('hidden');
+                 }
+                 return;
+            }
+
+            const value = target.dataset.value;
+            const targetInput = document.getElementById(numpadTargetInput.value);
+            if (!targetInput) return;
+
+            switch(value) {
+                case 'close':
+                    numpadModal.classList.add('hidden');
+                    break;
+                case 'clear':
+                    targetInput.value = '';
+                    break;
+                case 'backspace':
+                    targetInput.value = targetInput.value.slice(0, -1);
+                    break;
+                case '.':
+                    if (!targetInput.value.includes('.')) {
+                        targetInput.value += value;
+                    }
+                    break;
+                default: // 0-9
+                    targetInput.value += value;
+                    break;
+            }
+        });
+    }
+
 
     // --- Tab Switching Logic (Vital Signs) ---
     vitalsTabLinks.forEach(link => {
@@ -939,17 +996,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = `
                 <tr>
                     <td class="text-[var(--color-text-base)] sticky left-0">${item.datetime}</td>
+                    <td class="text-[var(--color-text-base)]">${item.temp || ''}</td>
+                    <td class="text-[var(--color-text-base)]">${item.rr || ''}</td>
+                    <td class="text-[var(--color-text-base)]">${item.hr || ''}</td>
                     <td class="text-[var(--color-text-base)]">${item.bp || ''}</td>
                     <td class="text-[var(--color-text-base)]">${item.pulse || ''}</td>
-                    <td class="text-[var(--color-text-base)]">${item.hr || ''}</td>
-                    <td class="text-[var(--color-text-base)]">${item.rr || ''}</td>
-                    <td class="text-[var(--color-text-base)]">${item.temp || ''}</td>
-                    <td class="text-[var(--color-text-base)]">${item.fbs || ''}</td>
                     <td class="text-[var(--color-text-base)]">${item.crt || ''}</td>
+                    <td class="text-[var(--color-text-base)]">${item.fbs || ''}</td>
                     <td class="text-[var(--color-text-base)]">${item.mucous || ''}</td>
-                    <td class="text-[var(--color-text-base)]">${item.pulse_quality || ''}</td>
                     <td class="text-[var(--color-text-base)]">${item.lung || ''}</td>
                     <td class="text-[var(--color-text-base)]">${item.heart || ''}</td>
+                    <td class="text-[var(--color-text-base)]">${item.pulse_quality || ''}</td>
                     <td class="text-[var(--color-text-base)]">${item.loc || ''}</td>
                     <td class="text-[var(--color-text-base)]">${item.pain || ''}</td>
                     <td class="text-center">${cyanosisText}</td>
