@@ -1,0 +1,76 @@
+<div class="flex flex-wrap justify-between items-center gap-4 py-4">
+    <div class="flex flex-wrap items-center gap-3">
+        
+        <select id="doc-type-select" class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary]" required onchange="this.classList.toggle('text-gray-500', this.value === ''); this.classList.toggle('dark:text-[--color-text-muted]', this.value === '')">
+            <option value="" disabled>Select Document Type</option>
+            <option value="1" class="text-black dark:text-[--color-text-base]" selected>อายุรกรรมทั่วไป</option>
+            <option value="2" class="text-black dark:text-[--color-text-base]">รังษีวินิจฉัย</option>
+            <option value="3" class="text-black dark:text-[--color-text-base]">อัลตราซาวด์</option>
+            <option value="4" class="text-black dark:text-[--color-text-base]">คลินิคโรคหัวใจ</option>
+        </select>
+        
+        <select id="dvm-select" class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm text-gray-500 dark:bg-[--color-bg-secondary] dark:text-[--color-text-muted]" required onchange="this.classList.toggle('text-gray-500', this.value === ''); this.classList.toggle('dark:text-[--color-text-muted]', this.value === '')">
+            <option value="" selected disabled>Select DMV</option>
+            <option value="aaa" class="text-black dark:text-[--color-text-base]">DVM AAA</option>
+            <option value="bbb" class="text-black dark:text-[--color-text-base]">DVM BBB</option>
+            <option value="ccc" class="text-black dark:text-[--color-text-base]">DVM CCC</option>
+            <option value="ddd" class="text-black dark:text-[--color-text-base]">DVM DDD</option>
+        </select>
+        
+        <select id="dept-select" class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm text-gray-500 dark:bg-[--color-bg-secondary] dark:text-[--color-text-muted]" required onchange="this.classList.toggle('text-gray-500', this.value === ''); this.classList.toggle('dark:text-[--color-text-muted]', this.value === '')">
+            <option value="" selected disabled>Select Department</option>
+            <option value="1" class="text-black dark:text-[--color-text-base]">อายุรกรรมทั่วไป</option>
+            <option value="2" class="text-black dark:text-[--color-text-base]">รังษีวินิจฉัย</option>
+            <option value="3" class="text-black dark:text-[--color-text-base]">อัลตราซาวด์</option>
+            <option value="4" class="text-black dark:text-[--color-text-base]">คลินิคโรคหัวใจ</option>
+        </select>
+
+        <button id="search-btn" class="bg-blue-600 hover:bg-blue-700 dark:bg-[--color-primary-600] dark:hover:bg-[--color-primary-700] text-white px-3 py-2 rounded-lg text-sm font-medium flex items-center">
+            <i data-lucide="search" class="w-4 h-4 mr-1.5"></i> Search
+        </button>
+
+        <button id="clear-filters-btn" class="bg-gray-200 hover:bg-gray-300 dark:bg-[--color-bg-secondary] dark:hover:bg-[--color-border-base] text-gray-800 dark:text-[--color-text-base] px-3 py-2 rounded-lg text-sm font-medium flex items-center">
+            <i data-lucide="rotate-ccw" class="w-4 h-4 mr-1.5"></i> Clear all
+        </button>
+
+        <span class="text-blue-600 dark:text-[--color-primary-500] text-sm font-semibold ml-2">
+            พบ 27 รายการ
+        </span>
+
+        <p class="text-gray-600 dark:text-[--color-text-muted] text-xs">
+            Default คือ Last 50 records แบบ By Date
+        </p>
+    </div>
+    <button id="btn-goto-addnew" class="bg-orange-500 hover:bg-orange-600 dark:bg-[--color-orange-500] dark:hover:bg-[--color-orange-600] text-white px-4 py-2 rounded-lg text-sm font-medium">
+        New Ext Doc
+    </button>
+</div>
+
+
+<div class="bg-white dark:bg-[--color-bg-content] rounded-lg shadow border border-gray-200 dark:border-[--color-border-base] overflow-hidden">
+    
+    <div class="overflow-x-auto overflow-y-auto border-gray-200 dark:border-[--color-border-base] rounded-lg" style="height: 400px;">
+        <table class="text-left text-xs table-fixed" style="min-width: 102rem;" id="ext-doc-table"> <thead>
+                <tr class="border-b dark:border-[--color-border-base]">
+                    <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] sticky-col sort-active" data-sort="datetime">
+                        DATE TIME <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                    </th>
+                    <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Document Type</th>
+                    <th class="p-3 font-semibold w-25 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">IMG</th>
+                    <th class="p-3 font-semibold w-25 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">PDF</th>
+                    <th class="p-3 font-semibold w-70 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Note</th> 
+                    <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">DVM</th>
+                    <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Department</th>
+                    <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">User Record</th>
+                    <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Date Time Create</th>
+                    <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Date Time Last Update</th>
+                    <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">User Last Update</th>
+                    <th class="p-3 font-semibold w-20 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">STATUS</th>
+                    <th class="p-3 font-semibold w-12 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]"></th>
+                </tr>
+            </thead>
+            <tbody id="ext-doc-tbody" class="divide-y divide-gray-200 dark:divide-[--color-border-base] dark:text-[--color-text-base]">
+                </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="px-4 pb-4">
+    <div class="flex flex-wrap justify-between items-center gap-4 py-4">
+        <div class="flex flex-wrap items-center gap-3">
+            <button class="bg-green-600 hover:bg-green-700 dark:bg-[--color-green-600] dark:hover:bg-[--color-green-700] text-white px-4 py-2 rounded-lg text-sm">
+                Last 50 records
+            </button>
+            <button class="bg-blue-600 hover:bg-blue-700 dark:bg-[--color-primary-600] dark:hover:bg-[--color-primary-700] text-white px-4 py-2 rounded-lg text-sm flex items-center">
+                <i data-lucide="calendar" class="w-4 h-4 mr-1.5"></i> Date Picker
+            </button>
+            <p class="text-gray-600 dark:text-[--color-text-muted] text-xs">
+                Default คือ Last 50 records มีปุ่ม more อยู่ด้านล่างของตาราง การเลือกจาก Date Picker ให้สามารถเลือกเป็นเดือนได้ เลือกได้สูงสุด 3 เดือน
+            </p>
+        </div>
+        <button id="btn-goto-addnew" class="bg-orange-500 hover:bg-orange-600 dark:bg-[--color-orange-500] dark:hover:bg-[--color-orange-600] text-white px-4 py-2 rounded-lg text-sm font-medium">
+            New Ext Doc
+        </button>
+    </div>
+
+    <div class="bg-white dark:bg-[--color-bg-content] rounded-lg shadow border border-gray-200 dark:border-[--color-border-base] overflow-hidden">
+        
+        <div class="overflow-x-auto overflow-y-auto border-gray-200 dark:border-[--color-border-base] rounded-lg" style="height: 400px;">
+            <table class="text-left text-xs table-fixed" style="min-width: 104rem;" id="ext-doc-table">
+            <thead>
+                    <tr class="border-b dark:border-[--color-border-base]">
+                        <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] sticky-col sort-active" data-sort="datetime">
+                            DATE TIME <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                        </th>
+                        <th class="p-3 font-semibold w-40 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" data-sort="docType"> Document Type <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                        </th>
+                        <th class="p-3 font-semibold w-25 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">IMG</th>
+                        <th class="p-3 font-semibold w-25 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">PDF</th>
+                        <th class="p-3 font-semibold w-70 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Note</th> 
+                        <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" data-sort="dvm">
+                            DVM <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                        </th>
+                        <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" data-sort="department">
+                            Department <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                        </th>
+                        <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">User Record</th>
+                        <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Date Time Create</th>
+                        <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">Date Time Last Update</th>
+                        <th class="p-3 font-semibold w-32 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">User Last Update</th>
+                        <th class="p-3 font-semibold w-20 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">STATUS</th>
+                        <th class="p-3 font-semibold w-12 text-center dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]"></th>
+                        </tr>
+                </thead>
+                <tbody id="ext-doc-tbody" class="divide-y divide-gray-200 dark:divide-[--color-border-base] dark:text-[--color-text-base]">
+                    </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

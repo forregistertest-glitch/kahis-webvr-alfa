@@ -1,0 +1,273 @@
+/* This is kahis-theme.css */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    background-color: var(--color-bg-base, #f8f9fa);
+    color: var(--color-text-base, #1f2937);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* **** START: KAHIS Theme (From VitalSign) **** */
+.tab-active { border-bottom: 3px solid var(--color-primary-500, #3b82f6); color: var(--color-primary-500, #3b82f6); font-weight: 600; }
+.tab-inactive { color: var(--color-text-muted, #6b7280); border-bottom: 3px solid transparent; }
+.tab-inactive:hover { color: var(--color-text-hover, #374151); }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-scrollbar-track, #f1f1f1); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb, #c1c1c1); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-scrollbar-thumb-hover, #a8a8a8); }
+
+/* KAHIS Theme Variables (Light Mode Default) */
+:root {
+    --color-bg-base: #f8f9fa;
+    --color-bg-content: #ffffff;
+    --color-bg-secondary: #f3f4f6;
+    --color-text-base: #1f2937; /* Default Text */
+    --color-text-muted: #6b7280;
+    --color-text-hover: #374151;
+    --color-border-base: #e5e7eb;
+    --color-primary-500: #3b82f6; /* Blue */
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1d4ed8;
+    --color-orange-500: #f97316;
+    --color-orange-600: #ea580c;
+    --color-yellow-400: #facc15;
+    --color-yellow-500: #eab308;
+    --color-green-600: #16a34a; /* Green */
+    --color-green-700: #15803d;
+    --color-danger: #ef4444; /* Red */
+    --color-scrollbar-track: #f1f1f1;
+    --color-scrollbar-thumb: #c1c1c1;
+    --color-scrollbar-thumb-hover: #a8a8a8;
+}
+
+/* Dark Mode (Beige/Brown Theme from main file) */
+.dark {
+    --color-bg-base: #f5f1e9;
+    --color-bg-content: #fffcf5;
+    --color-bg-secondary: #eee8d8;
+    --color-text-base: #5a4a3a; /* Default Text Dark */
+    --color-text-muted: #8b7d6b;
+    --color-text-hover: #5a4a3a;
+    --color-border-base: #dcd0b9;
+    --color-primary-500: #60a5fa; /* Blue light */
+    --color-primary-600: #3b82f6;
+    --color-primary-700: #2563eb;
+    --color-orange-500: #fb923c;
+    --color-orange-600: #f97316;
+    --color-yellow-400: #fde047;
+    --color-yellow-500: #facc15;
+    --color-green-600: #16a34a; /* Green (Same as light) */
+    --color-green-700: #15803d; /* (Same as light) */
+    --color-danger: #f87171; /* Red (Light) */
+    --color-scrollbar-track: #eee8d8;
+    --color-scrollbar-thumb: #dcd0b9;
+    --color-scrollbar-thumb-hover: #bcae97;
+}
+
+.dark {
+    --color-bg-alt: var(--color-bg-content);
+    --color-bg-hover: var(--color-bg-secondary);
+    --color-border: var(--color-border-base);
+}
+
+body { background-color: var(--color-bg-base); color: var(--color-text-base); }
+.dark body { background-color: var(--color-bg-base); }
+/* **** END: KAHIS Theme **** */
+
+/* **** START: Styles from Main_Assessment_Module.html (Updated to .dark) **** */
+th { background-color: var(--color-bg-secondary, #f3f4f6); cursor: pointer; }
+.history-table { font-size: 0.7rem; line-height: 1rem; }
+
+.dark body { background-color: var(--color-bg-base); color: var(--color-text-base); }
+.dark header, .dark nav, .dark .bg-white { background-color: var(--color-bg-content); border-color: var(--color-border-base); }
+.dark th { background-color: var(--color-bg-secondary); color: var(--color-text-base); }
+.dark .tab-inactive { color: var(--color-text-muted); }
+.dark .tab-active { color: var(--color-primary-500); border-color: var(--color-primary-500); }
+.dark .text-gray-500 { color: var(--color-text-muted); }
+.dark .text-gray-600 { color: var(--color-text-muted); }
+.dark .text-gray-700 { color: var(--color-text-base); } 
+.dark .text-gray-800 { color: var(--color-text-base); }
+.dark .text-blue-600 { color: var(--color-primary-500); }
+.dark .text-green-700 { color: var(--color-green-600); }
+.dark .bg-blue-600 { background-color: var(--color-primary-600); }
+.dark .hover\:bg-blue-700:hover { background-color: var(--color-primary-700); }
+.dark .bg-green-600 { background-color: var(--color-green-600); }
+.dark .hover\:bg-green-700:hover { background-color: var(--color-green-700); }
+.dark .bg-orange-500 { background-color: var(--color-orange-500); }
+.dark .hover\:bg-orange-600:hover { background-color: var(--color-orange-600); }
+.dark .bg-yellow-400 { background-color: var(--color-yellow-400); }
+.dark .hover\:bg-yellow-500:hover { background-color: var(--color-yellow-500); }
+.dark .border { border-color: var(--color-border-base); }
+.dark .border-b { border-bottom-color: var(--color-border-base); }
+.dark .border-t { border-top-color: var(--color-border-base); }
+.dark .divide-y > :not([hidden]) ~ :not([hidden]) { border-top-color: var(--color-border-base); }
+.dark .bg-gray-50 { background-color: var(--color-bg-secondary); }
+.dark .hover\:bg-gray-50:hover { background-color: rgba(139, 125, 107, 0.1); }
+.dark .bg-blue-50 { background-color: rgba(96, 165, 250, 0.1); }
+.dark select, .dark textarea { background-color: var(--color-bg-secondary); border-color: var(--color-border-base); color: var(--color-text-base); }
+.dark footer.sticky { background-color: var(--color-bg-content); border-top-color: var(--color-border-base); }
+.dark .bg-gray-800 { background-color: var(--color-text-base); }
+.dark .text-gray-300 { color: var(--color-text-muted); }
+.dark .bg-gray-100 { background-color: rgba(139, 125, 107, 0.15); }
+.dark .bg-gray-200 { background-color: var(--color-bg-secondary); } 
+.dark .hover\:bg-gray-300:hover { background-color: var(--color-border-base); } 
+/* **** END: Styles from Main_Assessment_Module.html **** */
+
+
+/* **** START: Styles from VitalSign_Prototype.html **** */
+#historyTable th, #historyTable td {
+    padding: 12px 16px;
+    white-space: nowrap; 
+}
+#historyTable th {
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 600;
+}
+ #historyTable th:hover {
+    background-color: var(--color-border-base);
+ }
+#historyTable tbody tr {
+    border-bottom: 1px solid var(--color-border-base);
+    transition: background-color 0.2s;
+}
+#historyTable tbody tr:last-child {
+    border-bottom: none;
+}
+#historyTable tbody tr:hover {
+    background-color: var(--color-bg-secondary);
+}
+
+#historyTable thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10; 
+    background-color: var(--color-bg-secondary);
+}
+#historyTable th:first-child,
+#historyTable td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: var(--color-bg-content); 
+}
+#historyTable th:first-child {
+    z-index: 20; 
+    background-color: var(--color-bg-secondary); 
+}
+ #historyTable tbody tr:hover td:first-child {
+    background-color: var(--color-bg-secondary); 
+ }
+ #historyTable th:first-child, #historyTable td:first-child {
+    box-shadow: 2px 0 5px -2px rgba(0,0,0,0.1);
+ }
+ .dark #historyTable th:first-child, .dark #historyTable td:first-child {
+    box-shadow: 2px 0 5px -2px rgba(0,0,0,0.2);
+ }
+
+.sort-icon {
+    display: inline-flex;
+    width: 16px; 
+    height: 16px; 
+    margin-left: 4px;
+    vertical-align: middle;
+    color: var(--color-text-muted);
+    transition: color 0.2s, transform 0.2s;
+}
+.sort-icon.asc, .sort-icon.desc {
+    color: var(--color-primary-500);
+}
+.sort-active .sort-icon { color: var(--color-primary-500); }
+
+.form-input {
+     width: 100%; 
+     padding: 0.5rem 0.75rem; 
+     border-radius: 0.375rem; 
+     border: 1px solid var(--color-border-base); 
+     outline: none;
+     transition: box-shadow 0.2s;
+     background-color: var(--color-bg-content);
+     color: var(--color-text-base);
+}
+.form-input:focus {
+    box-shadow: 0 0 0 2px var(--color-primary-500);
+}
+.form-select {
+     width: 100%; 
+     cursor: default; 
+     border-radius: 0.375rem; 
+     border: 1px solid var(--color-border-base);
+     background-color: var(--color-bg-content);
+     padding: 0.5rem 0.75rem; 
+     text-align: left;
+     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); 
+     color: var(--color-text-base);
+     outline: none;
+     transition: box-shadow 0.2s;
+     appearance: none; 
+}
+.form-select:focus {
+    box-shadow: 0 0 0 2px var(--color-primary-500);
+}
+.form-select-placeholder {
+    color: var(--color-text-muted);
+}
+.form-checkbox {
+    height: 1rem; 
+    width: 1rem; 
+    border-radius: 0.25rem; 
+    border: 1px solid var(--color-border-base);
+    color: var(--color-primary-600);
+    background-color: var(--color-bg-content);
+}
+.form-checkbox:focus {
+     box-shadow: 0 0 0 2px var(--color-primary-500);
+}
+.form-label {
+    display: block;
+    font-size: 0.875rem; 
+    font-weight: 500; 
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem; 
+}
+
+.dark .form-input, .dark .form-select, .dark .dropdown-list {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border-base);
+    color: var(--color-text-base);
+}
+.dark .form-checkbox {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border-base);
+}
+ .dark .form-select-placeholder {
+    color: var(--color-text-muted);
+}
+
+.form-input-datetime {
+    position: relative;
+    color: var(--color-text-base);
+}
+.form-input-datetime:before {
+    content: attr(placeholder);
+    position: absolute;
+    left: 0.75rem; 
+    top: 0.5rem; 
+    color: var(--color-text-muted);
+    display: none;
+}
+.form-input-datetime:invalid:before {
+    display: block;
+}
+.form-input-datetime:invalid {
+    color: transparent;
+}
+.form-input-datetime::-webkit-calendar-picker-indicator {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.dark .form-input-datetime::-webkit-calendar-picker-indicator {
+    filter: invert(0.6);
+}
+/* **** END: Styles from VitalSign_Prototype.html **** */

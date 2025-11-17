@@ -1,0 +1,147 @@
+<main>
+    <div class="px-4 pb-4">
+        
+        <h1 class="text-xl font-semibold text-gray-700 dark:text-[--color-text-base] py-4">New External Document</h1>
+
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+            
+            <select id="doc-type-select" class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm text-gray-500 dark:text-[--color-text-muted] dark:bg-[--color-bg-secondary]" required onchange="this.classList.toggle('text-gray-500', this.value === ''); this.classList.toggle('dark:text-[--color-text-muted]', this.value === '')">
+                <option value="" selected disabled>Select Document Type</option>
+                <option value="1" class="text-black dark:text-[--color-text-base]">อายุรกรรมทั่วไป</option>
+                <option value="2" class="text-black dark:text-[--color-text-base]">รังษีวินิจฉัย</option>
+                <option value="3" class="text-black dark:text-[--color-text-base]">อัลตราซาวด์</option>
+                <option value="4" class="text-black dark:text-[--color-text-base]">คลินิคโรคหัวใจ</option>
+            </select>
+            
+            <select id="dvm-select" class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm text-gray-500 dark:text-[--color-text-muted] dark:bg-[--color-bg-secondary]" required onchange="this.classList.toggle('text-gray-500', this.value === ''); this.classList.toggle('dark:text-[--color-text-muted]', this.value === '')">
+                <option value="" selected disabled>Select DVM</option>
+                <option value="aaa" class="text-black dark:text-[--color-text-base]">DVM AAA</option>
+                <option value="bbb" class="text-black dark:text-[--color-text-base]">DVM BBB</option>
+                <option value="ccc" class="text-black dark:text-[--color-text-base]">DVM CCC</option>
+                <option value="ddd" class="text-black dark:text-[--color-text-base]">DVM DDD</option>
+            </select>
+            
+            <select id="dept-select" class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm text-gray-500 dark:text-[--color-text-muted] dark:bg-[--color-bg-secondary]" required onchange="this.classList.toggle('text-gray-500', this.value === ''); this.classList.toggle('dark:text-[--color-text-muted]', this.value === '')">
+                <option value="" selected disabled>Select Department</option>
+                <option value="1" class="text-black dark:text-[--color-text-base]">อายุรกรรมทั่วไป</option>
+                <option value="2" class="text-black dark:text-[--color-text-base]">รังษีวินิจฉัย</option>
+                <option value="3" class="text-black dark:text-[--color-text-base]">อัลตราซาวด์</option>
+                <option value="4" class="text-black dark:text-[--color-text-base]">คลินิคโรคหัวใจ</option>
+            </select>
+
+            <button id="clear-filters-btn" class="bg-gray-200 hover:bg-gray-300 dark:bg-[--color-bg-secondary] dark:hover:bg-[--color-border-base] text-gray-800 dark:text-[--color-text-base] px-3 py-2 rounded-lg text-sm font-medium flex items-center">
+                <i data-lucide="rotate-ccw" class="w-4 h-4 mr-1.5"></i> Clear all
+            </button>
+            
+            <div class="flex-grow"></div> <select class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm text-gray-500 dark:text-[--color-text-muted] dark:bg-[--color-bg-secondary]" required onchange="this.classList.toggle('text-gray-500', this.value === ''); this.classList.toggle('dark:text-[--color-text-muted]', this.value === '')">
+                <option value="" selected disabled>Select Date in Old Visit</option>
+                <option value="1" class="text-black dark:text-[--color-text-base]">30/11/2025</option>
+                <option value="2" class="text-black dark:text-[--color-text-base]">29/11/2025</option>
+            </select>
+            <button class="bg-blue-600 hover:bg-blue-700 dark:bg-[--color-primary-600] dark:hover:bg-[--color-primary-700] text-white px-4 py-2 rounded-lg text-sm flex items-center">
+                <i data-lucide="calendar" class="w-4 h-4 mr-1.5"></i> Date Picker
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            
+            <div class="md:col-span-1 space-y-4">
+                <div>
+                    <label for="note" class="block font-semibold mb-1 dark:text-[--color-text-base]">Note</label>
+                    <textarea id="note" class="w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 h-40 text-xs dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" placeholder="200 words show in table 50 words"></textarea>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-2 dark:text-[--color-text-base]">Upload file</h3>
+                    <div class="bg-white dark:bg-[--color-bg-content] border border-gray-300 dark:border-[--color-border-base] rounded-lg p-3 space-y-2 text-xs dark:text-[--color-text-base]">
+                        <div class="flex justify-between items-center">
+                            <span>PDF : File name.pdf</span>
+                            <button class="text-gray-400 hover:text-red-500 dark:text-[--color-text-muted] dark:hover:text-red-400"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>IMG 1 : File name.jpg</span>
+                            <button class="text-gray-400 hover:text-red-500 dark:text-[--color-text-muted] dark:hover:text-red-400"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>IMG 2 : File name.jpg</span>
+                            <button class="text-gray-400 hover:text-red-500 dark:text-[--color-text-muted] dark:hover:text-red-400"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>IMG 3 : File name.jpg</span>
+                            <button class="text-gray-400 hover:text-red-500 dark:text-[--color-text-muted] dark:hover:text-red-400"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>IMG 4 : File name.jpg</span>
+                            <button class="text-gray-400 hover:text-red-500 dark:text-[--color-text-muted] dark:hover:text-red-400"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>IMG 5 : File name.jpg</span>
+                            <button class="text-gray-400 hover:text-red-500 dark:text-[--color-text-muted] dark:hover:text-red-400"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>IMG 6 : File name.jpg</span>
+                            <button class="text-gray-400 hover:text-red-500 dark:text-[--color-text-muted] dark:hover:text-red-400"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        </div>
+                        
+                        <button class="bg-blue-100 hover:bg-blue-200 text-blue-700 dark:bg-[rgba(96,165,250,0.1)] dark:hover:bg-[rgba(96,165,250,0.2)] dark:text-[--color-primary-500] px-4 py-2 rounded-lg text-sm font-medium w-full mt-2">
+                            Browse
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-1 space-y-4">
+                <img src="https://images.unsplash.com/photo-1530499175983-7052a3163351?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 1: X-Ray" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+1'">
+                <img src="https://images.unsplash.com/photo-1579165466991-467f3946a383?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 4: Ultrasound" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+4'">
+                <img src="https://images.unsplash.com/photo-1606315865650-48867663b31b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 7: Lab Vials" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+7'">
+            </div>
+
+            <div class="md:col-span-1 space-y-4">
+                <img src="https://images.unsplash.com/photo-1551808525-51a94da548ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 2: Medical Chart" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+2'">
+                <img src="https://images.unsplash.com/photo-1578496479903-7a204f21aa48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 5: Microscope View" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+5'">
+                <img src="https://images.unsplash.com/photo-1619473413800-1c5c301131a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 8: Dental X-Ray" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+8'">
+            </div>
+
+            <div class="md:col-span-1 space-y-4">
+                <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 3: Handwritten Notes" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+3'">
+                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 6: Clipboard" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+6'">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" 
+                     alt="IMG 9: Lab Research" 
+                     class="w-full h-48 object-cover rounded-lg border border-gray-300 dark:border-[--color-border-base] cursor-pointer clickable-img"
+                     onerror="this.src='https://placehold.co/400x192/e2e8f0/9ca3af?text=IMG+9'">
+            </div>
+
+        </div> <div class="flex items-center justify-between mt-4 p-3 bg-white dark:bg-[--color-bg-content] rounded-lg shadow border border-gray-200 dark:border-[--color-border-base]">
+            <span class="text-xs text-red-600 dark:text-red-400">
+                <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1"></i> ภาพจะถูกลดขนาดให้มีความกว้างของภาพสูงสุด 1080 px ก่อนจัดเก็บข้อมูล
+            </span>
+            <button class="bg-blue-600 hover:bg-blue-700 dark:bg-[--color-primary-600] dark:hover:bg-[--color-primary-700] text-white px-6 py-2 rounded-lg text-sm font-bold">
+                Confirm Create Ext. Document
+            </button>
+        </div>
+
+    </div> </main>

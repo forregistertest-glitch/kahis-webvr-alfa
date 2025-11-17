@@ -1,0 +1,246 @@
+<div class="p-4 flex justify-between items-center">
+    <h1 class="text-xl font-semibold text-gray-700 dark:text-[--color-text-base]">Assessment Module</h1>
+     </div>
+ <div class="px-4 pb-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-white dark:bg-[--color-bg-content] rounded-lg shadow border border-gray-200 dark:border-[--color-border-base] overflow-hidden md:col-span-1">
+        <div class="p-3 border-b dark:border-[--color-border-base]">
+            <h2 class="font-semibold text-md dark:text-[--color-text-base]">History</h2>
+        </div>
+         <div class="overflow-y-auto" style="height: 250px;">
+            <table class="w-full text-left history-table" id="assessment-history-table"> <thead>
+                    <tr class="border-b dark:border-[--color-border-base]">
+                        <th class="p-3 font-semibold dark:bg-[--color-bg-secondary] dark:text-[--color-text-base] sort-active" data-sort="datetime"> Date/Time Create <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                        </th>
+                        <th class="p-3 font-semibold dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" data-sort="dvm">
+                            DVM <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                        </th>
+                        <th class="p-3 font-semibold dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" data-sort="department">
+                            Department <i data-lucide="arrow-up-down" class="sort-icon"></i>
+                        </th>
+                    </tr>
+                </thead>
+                 <tbody class="divide-y divide-gray-200 dark:divide-[--color-border-base] dark:text-[--color-text-base]" id="assessment-history-table-body"> </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="bg-white dark:bg-[--color-bg-content] rounded-lg shadow border border-gray-200 dark:border-[--color-border-base] p-4 space-y-3 md:col-span-2">
+         <div class="flex justify-between items-center">
+            <div class="text-xs text-gray-500 dark:text-[--color-text-muted]">Last Update: 31 Dec 2025, 23:55 by User DVM</div>
+        </div>
+        <div>
+            <div class="flex items-center space-x-2">
+                <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Assessment Note</label>
+                <button id="copy-assessment-note-btn" class="text-gray-400 hover:text-gray-600 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]" aria-label="Copy Assessment Note">
+                    <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+                <span id="copy-msg-assessment" class="text-xs text-green-600 hidden ml-2">Copied!</span>
+            </div>
+            <div id="assessment-note-content" class="border rounded-lg p-3 h-32 bg-gray-50 dark:bg-[--color-bg-secondary] text-gray-600 dark:text-[--color-text-muted] overflow-y-auto mt-1 text-xs dark:border-[--color-border-base]">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                <br>ขึ้นบรรทัดทุกครั้ง
+                <br>1. ทดสอบ
+                <br>2.TEST
+                <br>3.TEST
+                <br>4.TEST
+                <br>5.TEST
+                <br>6.TEST
+                <br>7.TEST
+                <br>8.TEST
+                <br>9.TEST
+                <br>จบข้อความ
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <div class="flex items-center space-x-2">
+                    <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Problem List</label>
+                    <button id="copy-problem-list-btn" class="text-gray-400 hover:text-gray-600 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]" aria-label="Copy Problem List">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                    </button>
+                    <span id="copy-msg-problem" class="text-xs text-green-600 hidden ml-2">Copied!</span>
+                </div>
+                <div id="problem-list-content" class="border rounded-lg p-3 h-20 bg-gray-50 dark:bg-[--color-bg-secondary] text-gray-600 dark:text-[--color-text-muted] overflow-y-auto mt-1 text-xs dark:border-[--color-border-base]">
+                    Problem 1, Problem 2, Problem 3
+                </div>
+            </div>
+            <div>
+                <div class="flex items-center space-x-2">
+                    <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Diagnosis</label>
+                    <button id="copy-diagnosis-btn" class="text-gray-400 hover:text-gray-600 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]" aria-label="Copy Diagnosis">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                    </button>
+                    <span id="copy-msg-diagnosis" class="text-xs text-green-600 hidden ml-2">Copied!</span>
+                </div>
+                <div id="diagnosis-content" class="border rounded-lg p-3 h-20 bg-gray-50 dark:bg-[--color-bg-secondary] text-gray-600 dark:text-[--color-text-muted] overflow-y-auto mt-1 text-xs dark:border-[--color-border-base]">
+                    Diagnosis 1, Diagnosis 2, Diagnosis 3, Diagnosis 4
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Prognosis:</label>
+            <span class="text-gray-600 dark:text-[--color-text-muted]">n/a</span>
+            <span class="font-semibold text-gray-700 dark:text-[--color-text-muted]">To</span>
+            <span class="text-gray-600 dark:text-[--color-text-muted]">n/a</span>
+            <span class="text-gray-500 dark:text-[--color-text-muted] text-xs ml-2">(ถ้าไม่มีการเลือกข้อมูลจะว่าง แปลว่าไม่มีกรอกข้อมูล)</span>
+        </div>
+    </div>
+</div>
+ <div class="p-4 flex justify-between items-center">
+    <h1 class="text-xl font-semibold text-gray-700 dark:text-[--color-text-base]">Assessment Module Editor</h1>
+     <div class="flex items-center space-x-2">
+         <button class="bg-green-600 hover:bg-green-700 dark:bg-[--color-green-600] dark:hover:bg-[--color-green-700] text-white px-3 py-2 rounded-lg text-sm">Go to Today</button>
+         <button class="bg-blue-600 hover:bg-blue-700 dark:bg-[--color-primary-600] dark:hover:bg-[--color-primary-700] text-white px-3 py-2 rounded-lg text-sm flex items-center">
+             <i data-lucide="calendar" class="inline-block w-4 h-4 mr-1.5"></i> Date Picker
+         </button>
+     </div>
+ </div>
+ <div class="px-4 pb-4 space-y-4">
+     <div class="bg-white dark:bg-[--color-bg-content] rounded-lg shadow border border-gray-200 dark:border-[--color-border-base] overflow-hidden">
+        <div class="flex flex-wrap border-b border-gray-200 dark:border-[--color-border-base] px-2 sm:px-4 items-start">
+             <button class="py-3 px-3 sm:px-4 text-left text-blue-600 dark:text-[--color-primary-500] border-b-2 border-blue-600 dark:border-[--color-primary-500]">
+                <span class="text-sm font-semibold">DVM AAA</span>
+                <span class="block text-xs font-normal text-blue-600 dark:text-[--color-primary-5DoNotUseThis]">(user ตรงกับ login, vet = active)</span>
+            </button>
+            <button class="py-3 px-3 sm:px-4 text-left text-gray-700 hover:text-gray-900 dark:text-[--color-text-base] dark:hover:text-[--color-text-base]">
+                <span class="text-sm font-medium">DVM AAA</span>
+                <span class="block text-xs font-normal text-gray-700 dark:text-[--color-text-base]">201 อายุรกรรมทั่วไปนอกเวลา</span>
+                 <span class="block text-xs font-normal text-transparent">&nbsp;</span>
+            </button>
+             <button class="py-3 px-3 sm:px-4 text-left text-gray-500 hover:text-gray-700 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]">
+                <span class="text-sm font-medium">DVM BBB</span>
+                <span class="block text-xs font-normal text-gray-500 dark:text-[--color-text-muted]">101 อายุรกรรมทั่วไปในเวลา</span>
+                <span class="block text-xs font-normal text-gray-500 dark:text-[--color-text-muted]">(user ไม่ตรงกับ login, No vet = inactive)</span>
+            </button>
+            <button class="py-3 px-3 sm:px-4 text-left text-gray-500 hover:text-gray-700 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]">
+                <span class="text-sm font-medium">DVM BBB</span>
+                <span class="block text-xs font-normal text-gray-500 dark:text-[--color-text-muted]">201 อายุรกรรมทั่วไปนอกเวลา</span>
+                 <span class="block text-xs font-normal text-transparent">&nbsp;</span>
+            </button>
+             <button class="py-3 px-3 sm:px-4 text-left text-gray-500 hover:text-gray-700 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]">
+                <span class="text-sm font-medium">DVM CCC</span>
+                <span class="block text-xs font-normal text-gray-500 dark:text-[--color-text-muted]">101 อายุรกรรมทั่วไปนอกเวลา</span>
+                 <span class="block text-xs font-normal text-transparent">&nbsp;</span>
+            </button>
+             <button class="py-3 px-3 sm:px-4 text-left text-gray-500 hover:text-gray-700 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]">
+                <span class="text-sm font-medium">DVM DDD</span>
+                <span class="block text-xs font-normal text-gray-500 dark:text-[--color-text-muted]">101 อายุรกรรมทั่วไปนอกเวลา</span>
+                 <span class="block text-xs font-normal text-transparent">&nbsp;</span>
+            </button>
+             <button class="py-3 px-3 sm:px-4 text-left text-gray-500 hover:text-gray-700 dark:text-[--color-text-muted] dark:hover:text-[--color-text-base]">
+                <span class="text-sm font-medium">DVM EEE</span>
+                <span class="block text-xs font-normal text-gray-500 dark:text-[--color-text-muted]">101 อายุรกรรมทั่วไปนอกเวลา</span>
+                 <span class="block text-xs font-normal text-transparent">&nbsp;</span>
+            </button>
+        </div>
+        <div class="p-4 border-b border-gray-200 dark:border-[--color-border-base]">
+             <div class="flex flex-col sm:flex-row justify-between sm:items-center space-y-2 sm:space-y-0">
+                 <div class="text-sm">
+                    <span class="text-green-700 dark:text-[--color-green-600] font-semibold">For 31 Dec 2025</span>
+                    <span class="text-gray-600 dark:text-[--color-text-muted]"> (DVM ต้องเป็นของตนเองเท่านั้นเลือกไม่ได้)...</span>
+                </div>
+                 <div class="text-xs text-gray-500 dark:text-[--color-text-muted] flex-shrink-0 sm:ml-4 text-left sm:text-right">
+                    Last Update : 31 Dec 2025, 23:55 by User DVM
+                </div>
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="flex justify-end mb-2">
+                <div class="flex items-center space-x-2">
+                    <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Input Tool:</label>
+                    <select class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">
+                        <option selected disabled>Select Option</option>
+                        <option value="na">Guildline</option>
+                        <option value="good">Favorite Drug</option>
+                        <option value="fair">DM Case Sign</option>
+                        <option value="guarded">Follow up record</option>
+                        <option value="poor">Common Blood Exam</option>
+                        <option value="grave">Common Examination</option>
+                    </select>
+                </div>
+            </div>
+            <div class="space-y-3">
+                
+                <div>
+                    <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Assessment Note</label>
+                    
+                    <div class="flex items-center space-x-1 p-2 border border-gray-300 dark:border-[--color-border-base] bg-gray-50 dark:bg-[--color-bg-secondary] rounded-t-lg mt-1">
+                        <button type="button" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-[--color-border-base] text-gray-700 dark:text-[--color-text-base]" aria-label="Bold">
+                            <i data-lucide="bold" class="w-4 h-4"></i>
+                        </button>
+                        <button type="button" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-[--color-border-base] text-gray-700 dark:text-[--color-text-base]" aria-label="Italic">
+                            <i data-lucide="italic" class="w-4 h-4"></i>
+                        </button>
+                        <button type="button" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-[--color-border-base] text-gray-700 dark:text-[--color-text-base]" aria-label="Underline">
+                            <i data-lucide="underline" class="w-4 h-4"></i>
+                        </button>
+                        
+                        <div class="border-l border-gray-300 dark:border-[--color-border-base] h-5 mx-1"></div>
+                        
+                        <button type="button" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-[--color-border-base] text-gray-700 dark:text-[--color-text-base]" aria-label="Unordered List">
+                            <i data-lucide="list" class="w-4 h-4"></i>
+                        </button>
+                        <button type="button" class="p-1 rounded hover:bg-gray-200 dark:hover:bg-[--color-border-base] text-gray-700 dark:text-[--color-text-base]" aria-label="Ordered List">
+                            <i data-lucide="list-ordered" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <textarea class="w-full border border-gray-300 dark:border-[--color-border-base] rounded-b-lg p-2 
+                               border-t-0 focus:ring-0 focus:outline-none dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" 
+                               rows="4" placeholder="Lorem ipsum dolor sit amet..."></textarea>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Prognosis:</label>
+                    <select class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm w-40 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">
+                        <option selected disabled>Select prognosis</option>
+                        <option value="na">N/A</option>
+                        <option value="good">Good: Favorable outcome expected</option>
+                        <option value="fair">Fair: Favorable outcome is possible</option>
+                        <option value="guarded">Guarded: Outcome is uncertain</option>
+                        <option value="poor">Poor: Outcome is non-favorable</option>
+                        <option value="grave">Grave: Death is imminent</option>
+                    </select>
+                    <span class="text-gray-600 dark:text-[--color-text-muted]">to</span>
+                    <select class="border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 text-sm w-40 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]">
+                        <option selected disabled>Select prognosis</option>
+                        <option value="na">N/A</option>
+                        <option value="good">Good: Favorable outcome expected</option>
+                        <option value="fair">Fair: Favorable outcome is possible</option>
+                        <option value="guarded">Guarded: Outcome is uncertain</option>
+                        <option value="poor">Poor: Outcome is non-favorable</option>
+                        <option value="grave">Grave: Death is imminent</option>
+                    </select>
+                </div>
+                
+                <div class="pt-4 border-t border-gray-200 dark:border-[--color-border-base]">
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Problem List</label>
+                            <textarea class="w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 mt-1 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" rows="3" placeholder="Problem 1 x, Problem 2 x, Problem 3 x,"></textarea>
+                        </div>
+                        <div>
+                            <label class="font-semibold text-gray-700 dark:text-[--color-text-base]">Diagnosis</label>
+                            <textarea class="w-full border border-gray-300 dark:border-[--color-border-base] rounded-lg p-2 mt-1 dark:bg-[--color-bg-secondary] dark:text-[--color-text-base]" rows="3" placeholder="Diagnosis 1 x, Diagnosis 2 x, Diagnosis 3 x, Diagnosis 4 x"></textarea>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+     </div>
+
+     <div class="px-4 pb-4">
+         <div class="bg-white dark:bg-[--color-bg-content] rounded-lg shadow border border-gray-200 dark:border-[--color-border-base] p-3 flex justify-between items-center">
+            
+            <div class="flex space-x-2">
+                <button id="open-problem-list-modal" class="bg-green-600 hover:bg-green-700 dark:bg-[--color-green-600] dark:hover:bg-[--color-green-700] text-white px-4 py-2 rounded-lg text-sm font-medium">
+                    <i data-lucide="list-plus" class="inline-block w-4 h-4 mr-1.5"></i> Problem List
+                </button>
+                <button class="bg-green-600 hover:bg-green-700 dark:bg-[--color-green-600] dark:hover:bg-[--color-green-700] text-white px-4 py-2 rounded-lg text-sm font-medium">
+                    <i data-lucide="list-plus" class="inline-block w-4 h-4 mr-1.5"></i> Diagnosis
+                </button>
+            </div>
+            
+            <button class="bg-blue-600 hover:bg-blue-700 dark:bg-[--color-primary-600] dark:hover:bg-[--color-primary-700] text-white px-6 py-2 rounded-lg text-sm font-bold">
+                 SAVE Assessment
+            </button>
+         </div>
+    </div>
+     </div>
