@@ -662,3 +662,463 @@ function initializeVitalSignsSaveLogic() {
 // =================================================================
 // END: BETA 4.0 - Final Verified
 // =================================================================
+// =================================================================
+// START: ORDER LAB & PATHOLOGY LOGIC (UPDATED BETA 4.2)
+// =================================================================
+
+// =================================================================
+// START: ORDER LAB & PATHOLOGY LOGIC (UPDATED BETA 4.3)
+// =================================================================
+
+// =================================================================
+// START: ORDER LAB & PATHOLOGY LOGIC (FINAL - BETA 4.4)
+// =================================================================
+
+// =================================================================
+// START: ORDER LAB & PATHOLOGY LOGIC (FINAL VERSION - BETA 4.6)
+// =================================================================
+
+// =================================================================
+// START: ORDER LAB & PATHOLOGY LOGIC (CORRECTED BETA 4.7)
+// =================================================================
+
+// =================================================================
+// START: ORDER LAB & PATHOLOGY LOGIC (THEME MATCHING - BETA 4.9)
+// =================================================================
+
+// =================================================================
+// START: ORDER LAB & PATHOLOGY LOGIC (FINAL FIX - BETA 5.0)
+// =================================================================
+
+// Global State (เก็บค่านอกฟังก์ชัน เพื่อกันค่าหาย)
+let globalLisCart = [];
+let globalLisPriority = 'Routine'; 
+
+// --- 1. ORDER LAB (CLINICAL PATHOLOGY) ---
+function initializeLisScripts() {
+    const categoryList = document.getElementById('lis-category-list');
+    const itemList = document.getElementById('lis-item-list');
+    const currentCatName = document.getElementById('lis-current-cat-name');
+    const cartBody = document.getElementById('lis-cart-body');
+    const totalPriceEl = document.getElementById('lis-total-price');
+    const btnSave = document.getElementById('btn-save-lis-order');
+    
+    const btnRoutine = document.getElementById('btn-prio-routine');
+    const btnStat = document.getElementById('btn-prio-stat');
+    const checkFasting = document.getElementById('lis-fasting');
+
+    // --- Priority Logic (Corrected Function Name) ---
+    function updatePriorityUI() {
+        if (!btnRoutine || !btnStat) return;
+
+        const baseStyle = "flex-1 py-2 px-3 rounded border text-sm font-bold transition-all shadow-sm";
+
+        if (globalLisPriority === 'Routine') {
+            // Routine Active: พื้นเทาเข้ม ตัวขาว (ตามขอ)
+            btnRoutine.className = `${baseStyle} bg-gray-700 text-white border-gray-600 ring-2 ring-gray-400`;
+            // Stat Inactive: พื้นขาว ตัวแดง
+            btnStat.className = `${baseStyle} bg-white text-red-600 border-gray-300 hover:bg-red-50 dark:bg-transparent dark:border-red-900 dark:text-red-400`;
+        } else {
+            // Routine Inactive: พื้นขาว ตัวเทา
+            btnRoutine.className = `${baseStyle} bg-white text-gray-600 border-gray-300 hover:bg-gray-50 dark:bg-transparent dark:border-gray-600 dark:text-gray-300`;
+            // Stat Active: พื้นเทาเข้ม (เหมือน Routine) แต่ตัวแดง (ตามขอ)
+            btnStat.className = `${baseStyle} bg-gray-700 text-red-400 border-gray-600 ring-2 ring-red-500`;
+        }
+    }
+
+    // Bind Events
+    if (btnRoutine && btnStat) {
+        // ใช้ globalLisPriority เพื่อจำค่า
+        btnRoutine.onclick = (e) => { e.preventDefault(); globalLisPriority = 'Routine'; updatePriorityUI(); };
+        btnStat.onclick = (e) => { e.preventDefault(); globalLisPriority = 'STAT'; updatePriorityUI(); };
+        updatePriorityUI(); // Init UI
+    }
+
+    function renderLisCategories() {
+        if (!categoryList) return;
+        categoryList.innerHTML = '';
+        Object.keys(labServiceCatalog).forEach(key => {
+            const cat = labServiceCatalog[key];
+            const li = document.createElement('li');
+            li.className = "p-3 cursor-pointer hover:bg-pink-50 dark:hover:bg-[--color-bg-secondary] border-b border-gray-100 dark:border-[--color-border-base] flex items-center space-x-3 transition-colors last:border-0";
+            li.innerHTML = `
+                <div class="p-2 bg-white dark:bg-[--color-bg-base] rounded-full border border-gray-200 dark:border-[--color-border-base] shadow-sm text-pink-500">
+                    <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
+                </div>
+                <span class="font-medium text-gray-700 dark:text-[--color-text-base]">${cat.name}</span>
+            `;
+            li.addEventListener('click', () => {
+                Array.from(categoryList.children).forEach(c => c.classList.remove('bg-pink-50', 'dark:bg-pink-900/20', 'border-l-4', 'border-pink-500'));
+                li.classList.add('bg-pink-50', 'dark:bg-pink-900/20', 'border-l-4', 'border-pink-500');
+                renderLisItems(key);
+            });
+            categoryList.appendChild(li);
+        });
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function renderLisItems(catKey) {
+        const cat = labServiceCatalog[catKey];
+        if (!cat) return;
+        currentCatName.innerText = cat.name;
+        itemList.innerHTML = '';
+
+        const loopCount = cat.items.length < 10 ? 3 : 1; 
+        for (let i = 0; i < loopCount; i++) {
+            cat.items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = "p-3 bg-white dark:bg-[--color-bg-content] border border-gray-200 dark:border-[--color-border-base] rounded-lg shadow-sm hover:shadow-md hover:border-pink-300 cursor-pointer transition-all flex justify-between items-center group mb-2";
+                
+                // [TAG STYLE: Clean Look] พื้นขาว ตัวเทา ขอบเทา (อ่านง่ายทุกโหมด)
+                const containerBadge = item.container 
+                    ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white text-gray-700 border border-gray-400 ml-2 shadow-sm dark:bg-transparent dark:text-[--color-text-base] dark:border-[--color-text-base]">
+                        <i data-lucide="test-tube-2" class="w-3 h-3 mr-1 text-gray-500 dark:text-[--color-text-base]"></i>${item.container}
+                       </span>` 
+                    : '';
+
+                li.innerHTML = `
+                    <div class="flex-1">
+                        <div class="flex items-center">
+                            <span class="font-semibold text-gray-800 dark:text-[--color-text-base] group-hover:text-pink-600">${item.name}</span>
+                            ${i > 0 ? `<span class="text-[10px] text-gray-400 ml-1">(Copy ${i})</span>` : ''}
+                        </div>
+                        <div class="text-xs text-gray-500 dark:text-[--color-text-muted] mt-1 flex items-center">
+                            LOINC: ${item.loinc} ${containerBadge}
+                        </div>
+                    </div>
+                    <div class="text-sm font-bold text-pink-600 dark:text-pink-400 ml-2 whitespace-nowrap">${item.price}.-</div>
+                `;
+                li.addEventListener('click', () => addToLisCart(item));
+                itemList.appendChild(li);
+            });
+        }
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function addToLisCart(item) {
+        if (globalLisCart.find(i => i.id === item.id)) return;
+        globalLisCart.push(item);
+        updateLisCartUI();
+    }
+
+    function updateLisCartUI() {
+        cartBody.innerHTML = '';
+        let total = 0;
+        if (globalLisCart.length === 0) {
+            cartBody.innerHTML = '<tr><td class="p-4 text-center text-gray-400 text-xs">No items selected</td></tr>';
+            totalPriceEl.innerText = "0";
+            return;
+        }
+
+        globalLisCart.forEach((item, index) => {
+            total += item.price;
+            
+            const containerBadgeCart = item.container 
+                ? `<div class="mt-1">
+                     <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white text-gray-700 border border-gray-400 dark:bg-transparent dark:text-[--color-text-base] dark:border-[--color-text-base]">
+                        ${item.container}
+                     </span>
+                   </div>`
+                : '';
+
+            const tr = document.createElement('tr');
+            tr.className = "group hover:bg-gray-50 dark:hover:bg-[--color-bg-secondary] border-b border-gray-100 dark:border-[--color-border-base] last:border-0";
+            tr.innerHTML = `
+                <td class="p-3 pl-4 align-top">
+                    <div class="font-semibold text-gray-800 dark:text-[--color-text-base] text-xs">${item.name}</div>
+                    ${containerBadgeCart}
+                </td>
+                <td class="p-3 text-right align-top text-gray-600 dark:text-[--color-text-muted] text-xs font-bold whitespace-nowrap">
+                    ${item.price}
+                </td>
+                <td class="p-3 text-center align-top w-10">
+                    <button class="text-gray-400 hover:text-red-600 transition-colors btn-remove-lis p-1 hover:bg-red-50 rounded" data-index="${index}">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                </td>
+            `;
+            cartBody.appendChild(tr);
+        });
+
+        totalPriceEl.innerText = total.toLocaleString();
+        document.querySelectorAll('.btn-remove-lis').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                globalLisCart.splice(parseInt(e.currentTarget.dataset.index), 1);
+                updateLisCartUI();
+            });
+        });
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    if (btnSave) {
+        btnSave.addEventListener('click', () => {
+            if (globalLisCart.length === 0) return alert("Please select at least one test.");
+            
+            const accessionNo = `LAB-${new Date().getFullYear().toString().slice(-2)}${(Math.random() * 10000).toFixed(0).padStart(4, '0')}`;
+            const isFasted = checkFasting ? checkFasting.checked : false;
+            
+            const extraDetails = {
+                priority: globalLisPriority,
+                fasting: isFasted
+            };
+
+            showSuccessModal(accessionNo, globalLisCart, totalPriceEl.innerText, extraDetails);
+            
+            // Reset UI but keep State for demo flow if needed, or reset state:
+            globalLisCart = [];
+            updateLisCartUI();
+            globalLisPriority = 'Routine';
+            updatePriorityUI();
+            if(checkFasting) checkFasting.checked = false;
+        });
+    }
+    renderLisCategories();
+    updateLisCartUI(); 
+    updatePriorityUI(); // เรียกฟังก์ชันที่ถูกต้องแล้ว!
+}
+
+
+// --- 2. ORDER PATHOLOGY (ANATOMIC PATHOLOGY) ---
+function initializePathologyScripts() {
+    const categoryList = document.getElementById('path-category-list');
+    const itemList = document.getElementById('path-item-list');
+    const selectedInfoBox = document.getElementById('path-selected-info');
+    const selectedNameEl = document.getElementById('path-selected-name');
+    const selectedCodeEl = document.getElementById('path-selected-code');
+    const inputSite = document.getElementById('path-site');
+    const inputHistory = document.getElementById('path-history');
+    const btnAddToCart = document.getElementById('btn-add-path-cart');
+    const miniCartList = document.getElementById('path-mini-cart');
+    const btnSubmit = document.getElementById('btn-submit-path-order');
+    const totalPriceEl = document.getElementById('path-total-price');
+
+    let currentItem = null;
+    let pathCart = [];
+
+    function renderPathCategories() {
+        if (!categoryList) return;
+        categoryList.innerHTML = '';
+        Object.keys(pathologyServiceCatalog).forEach(key => {
+            const cat = pathologyServiceCatalog[key];
+            const li = document.createElement('li');
+            li.className = "p-3 cursor-pointer hover:bg-fuchsia-50 dark:hover:bg-[--color-bg-secondary] border-b border-gray-100 dark:border-[--color-border-base] flex items-center space-x-3 transition-colors last:border-0";
+            li.innerHTML = `
+                <div class="p-2 bg-white dark:bg-[--color-bg-base] rounded-full border border-gray-200 dark:border-[--color-border-base] shadow-sm text-fuchsia-600">
+                    <i data-lucide="${cat.icon}" class="w-4 h-4"></i>
+                </div>
+                <span class="font-medium text-gray-700 dark:text-[--color-text-base]">${cat.name}</span>
+            `;
+            li.addEventListener('click', () => {
+                Array.from(categoryList.children).forEach(c => c.classList.remove('bg-fuchsia-50', 'dark:bg-fuchsia-900/20', 'border-l-4', 'border-fuchsia-500'));
+                li.classList.add('bg-fuchsia-50', 'dark:bg-fuchsia-900/20', 'border-l-4', 'border-fuchsia-500');
+                renderPathItems(key);
+            });
+            categoryList.appendChild(li);
+        });
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function renderPathItems(catKey) {
+        const cat = pathologyServiceCatalog[catKey];
+        if (!cat) return;
+        itemList.innerHTML = '';
+        const loopCount = cat.items.length < 8 ? 3 : 1;
+        for(let i=0; i<loopCount; i++) {
+            cat.items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = "p-3 bg-white dark:bg-[--color-bg-content] border border-gray-200 dark:border-[--color-border-base] rounded-lg shadow-sm hover:shadow-md hover:border-fuchsia-300 cursor-pointer transition-all flex justify-between items-center group mb-2";
+                li.innerHTML = `
+                    <div class="flex-1">
+                        <div class="font-semibold text-gray-800 dark:text-[--color-text-base] group-hover:text-fuchsia-700 text-sm">${item.name}</div>
+                        <div class="text-xs text-gray-500 dark:text-[--color-text-muted] mt-1">LOINC: ${item.loinc}</div>
+                    </div>
+                    <div class="text-sm font-bold text-fuchsia-600 dark:text-fuchsia-400 ml-2 whitespace-nowrap">${item.price}.-</div>
+                `;
+                li.addEventListener('click', () => selectItem(item));
+                itemList.appendChild(li);
+            });
+        }
+    }
+
+    function selectItem(item) {
+        currentItem = item;
+        selectedInfoBox.classList.remove('hidden');
+        selectedNameEl.innerText = item.name;
+        selectedCodeEl.innerText = `Code: ${item.id} | Price: ${item.price}.-`;
+        btnAddToCart.disabled = false;
+        if (item.req_site) inputSite.focus();
+    }
+
+    if (btnAddToCart) {
+        btnAddToCart.addEventListener('click', () => {
+            const site = inputSite.value.trim();
+            const history = inputHistory.value.trim();
+            if (currentItem.req_site && !site) {
+                alert("Please specify Specimen Source / Site.");
+                inputSite.focus();
+                return;
+            }
+            pathCart.push({ ...currentItem, site, history });
+            updatePathMiniCart();
+            inputSite.value = '';
+            selectedInfoBox.classList.add('hidden');
+            btnAddToCart.disabled = true;
+            currentItem = null;
+        });
+    }
+
+    function updatePathMiniCart() {
+        miniCartList.innerHTML = '';
+        let total = 0;
+        if (pathCart.length === 0) {
+            miniCartList.innerHTML = '<li class="text-center text-xs text-gray-400 italic py-2">No items added yet</li>';
+            totalPriceEl.innerText = "0";
+            return;
+        }
+        pathCart.forEach((item, index) => {
+            total += item.price;
+            const li = document.createElement('li');
+            li.className = "bg-white dark:bg-[--color-bg-content] p-2 rounded border border-gray-200 dark:border-[--color-border-base] flex justify-between items-start shadow-sm";
+            li.innerHTML = `
+                <div class="flex-1 mr-2">
+                    <div class="font-bold text-xs text-gray-700 dark:text-[--color-text-base]">${item.name}</div>
+                    <div class="text-xs text-gray-500 dark:text-[--color-text-muted] mt-0.5">
+                        <span class="font-semibold">Site:</span> <span class="text-fuchsia-600 dark:text-fuchsia-400">${item.site || '-'}</span>
+                    </div>
+                </div>
+                <button class="text-gray-400 hover:text-red-500 btn-remove-path" data-index="${index}">
+                    <i data-lucide="trash-2" class="w-3 h-3"></i>
+                </button>
+            `;
+            miniCartList.appendChild(li);
+        });
+        totalPriceEl.innerText = total.toLocaleString();
+        document.querySelectorAll('.btn-remove-path').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                pathCart.splice(parseInt(e.currentTarget.dataset.index), 1);
+                updatePathMiniCart();
+            });
+        });
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    if (btnSubmit) {
+        btnSubmit.addEventListener('click', () => {
+            if (pathCart.length === 0) return alert("Request list is empty.");
+            const accessionNo = `PATH-${new Date().getFullYear().toString().slice(-2)}${(Math.random() * 10000).toFixed(0).padStart(4, '0')}`;
+            showSuccessModal(accessionNo, pathCart, totalPriceEl.innerText, {});
+            pathCart = [];
+            updatePathMiniCart();
+            inputSite.value = '';
+            inputHistory.value = '';
+            selectedInfoBox.classList.add('hidden');
+            btnAddToCart.disabled = true;
+        });
+    }
+    renderPathCategories();
+}
+
+
+// --- 3. SUCCESS MODAL (THEME MATCHED) ---
+function showSuccessModal(accNo, cartItems, total, extraDetails = {}) {
+    let modal = document.getElementById('order-success-modal');
+    if (modal) modal.remove(); 
+
+    const div = document.createElement('div');
+    
+    // Badge Logic
+    let priorityBadge = '';
+    if (extraDetails && extraDetails.priority === 'STAT') {
+        priorityBadge = `<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-red-600 text-white shadow-sm">STAT</span>`;
+    } else if (extraDetails && extraDetails.priority) {
+        priorityBadge = `<span class="ml-2 px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600 border border-gray-200">Routine</span>`;
+    }
+
+    const fastingBadge = (extraDetails && extraDetails.fasting) 
+        ? `<span class="ml-2 px-2 py-0.5 rounded text-xs font-bold bg-orange-500 text-white shadow-sm">Fasted</span>`
+        : '';
+
+    div.innerHTML = `
+        <div id="order-success-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[150] backdrop-blur-sm">
+            <div class="bg-white dark:bg-[--color-bg-content] rounded-xl shadow-2xl p-0 max-w-md w-full flex flex-col overflow-hidden border border-gray-200 dark:border-[--color-border-base] animate-fade-in-up">
+                
+                <div class="p-6 text-center bg-green-50 dark:bg-green-900/10 border-b border-green-100 dark:border-green-900/20">
+                    <div class="w-16 h-16 bg-green-100 dark:bg-green-800 text-green-600 dark:text-green-100 rounded-full flex items-center justify-center mx-auto mb-3 shadow-inner">
+                        <i data-lucide="check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-[--color-text-base]">Order Confirmed!</h3>
+                    
+                    <div class="mt-3 flex flex-col items-center space-y-2">
+                        <div class="inline-block px-3 py-1 bg-white dark:bg-[--color-bg-base] rounded border border-green-200 dark:border-green-800 text-sm font-mono font-bold text-green-700 dark:text-green-400 shadow-sm">
+                            ${accNo}
+                        </div>
+                        <div class="flex justify-center items-center">
+                            ${priorityBadge}
+                            ${fastingBadge}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gray-50 dark:bg-[--color-bg-secondary] flex-1 overflow-y-auto max-h-60">
+                    <h4 class="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">Order Summary</h4>
+                    <ul id="modal-item-list" class="space-y-2 text-sm"></ul>
+                </div>
+
+                <div class="p-4 border-t border-gray-200 dark:border-[--color-border-base] bg-white dark:bg-[--color-bg-content]">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-gray-600 dark:text-[--color-text-muted] font-medium">Total Amount</span>
+                        <span class="text-xl font-bold text-blue-600 dark:text-blue-400">${total}.-</span>
+                    </div>
+                    
+                    <div class="text-[10px] text-gray-400 text-center mb-4 px-2 italic bg-gray-50 dark:bg-transparent py-2 rounded border border-dashed border-gray-200 dark:border-gray-700">
+                        *Note: รหัสที่แสดงคือ Accession No. (สำหรับห้อง Lab/สติกเกอร์สิ่งส่งตรวจ) <br>ส่วน Order No. (สำหรับใบสั่ง/การเงิน) จะถูกบันทึกในระบบแยกต่างหาก
+                    </div>
+
+                    <div class="flex space-x-3">
+                        <button onclick="document.getElementById('order-success-modal').remove()" class="flex-1 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 dark:bg-[--color-border-base] dark:hover:bg-gray-600 text-gray-700 dark:text-[--color-text-base] rounded-lg font-semibold text-sm transition-colors">
+                            Close
+                        </button>
+                        <button class="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center shadow-lg shadow-blue-600/20 transition-all active:scale-95">
+                            <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print Label
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(div.firstElementChild);
+    
+    const listContainer = document.getElementById('modal-item-list');
+    listContainer.innerHTML = '';
+    
+    if (cartItems && cartItems.length > 0) {
+        cartItems.forEach(item => {
+            const li = document.createElement('li');
+            li.className = "bg-white dark:bg-[--color-bg-content] p-3 rounded border border-gray-200 dark:border-[--color-border-base] shadow-sm flex justify-between items-start";
+            
+            // [MODAL TAG STYLE: Clean & Theme Matched]
+            let details = '';
+            if (item.container) {
+                details = `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-white text-gray-700 border border-gray-400 ml-2 shadow-sm dark:bg-transparent dark:text-[--color-text-base] dark:border dark:border-[--color-text-base]">${item.container}</span>`;
+            } else if (item.site) {
+                details = `<div class="text-xs text-fuchsia-600 dark:text-fuchsia-400 mt-0.5 font-medium">Site: ${item.site}</div>`;
+            }
+
+            li.innerHTML = `
+                <div class="flex-1">
+                    <div class="font-medium text-gray-800 dark:text-[--color-text-base] flex items-center flex-wrap gap-1">
+                        ${item.name}
+                        ${item.container ? details : ''} 
+                    </div>
+                    ${!item.container ? details : ''}
+                </div>
+                <div class="font-bold text-gray-600 dark:text-gray-400 ml-3">${item.price}</div>
+            `;
+            listContainer.appendChild(li);
+        });
+    } else {
+        listContainer.innerHTML = '<li class="text-center text-gray-400 italic">No items</li>';
+    }
+    
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+}

@@ -109,7 +109,11 @@ async function loadModuleContent(contentFile) {
         } else if (contentFile === 'order_pe_content.html') {
             initializeOrderPEScripts();
         }
-
+        else if (contentFile === 'order_lis_content.html') {
+            initializeLisScripts(); 
+        } else if (contentFile === 'order_path_content.html') {
+            initializePathologyScripts(); 
+        }
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
