@@ -113,7 +113,13 @@ async function loadModuleContent(contentFile) {
             initializeLisScripts(); 
         } else if (contentFile === 'order_path_content.html') {
             initializePathologyScripts(); 
+        } else if (contentFile === 'lab_viewer_content.html') {
+        // [NEW] Trigger Lab Viewer Logic
+        if (typeof initializeLabViewer === 'function') {
+            initializeLabViewer();
+            }
         }
+        
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
